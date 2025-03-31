@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar'])) {
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Cadastrar Produto</h1>
+    <h2>Cadastrar Produto</h2>
     <a href="../Login/login.php">Logout</a>
     <?php if ($msg): ?>
         <p style="color: green;"><?= $msg ?></p>
@@ -50,13 +50,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['adicionar'])) {
     <form method="POST" enctype="multipart/form-data">
         <input type="text" name="nome" placeholder="Nome" required>
         <textarea name="descricao" placeholder="Descrição" required></textarea>
-        <input type="number" step="0.01" name="preco" placeholder="Preço" required min="0">
-        <input type="number" name="quantidade" placeholder="Quantidade" required min="0">
+        <input type="number" step="0.01" name="preco" placeholder="Preço" required>
+        <input type="number" name="quantidade" placeholder="Quantidade" required>
         <input type="file" name="imagem" accept="image/*" required> <!-- Campo para upload -->
         <button type="submit" name="adicionar">Cadastrar</button>
     </form>
 
     <a href="../Listar/listar.php">Ver Produtos</a>
 </body>
-
 </html>

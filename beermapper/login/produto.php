@@ -18,7 +18,7 @@ class Produto {
                 ':quantidade' => $quantidade,
                 ':imagem_url' => $imagem_url
             ]);
-            return '<span style =" color: white;">Produto cadastrado com sucesso!</span>';
+            return "Produto cadastrado com sucesso!";
         } catch (PDOException $e) {
             return "Erro ao cadastrar: " . $e->getMessage();
         }
@@ -43,6 +43,22 @@ class Produto {
             ':preco' => $preco,
             ':quantidade' => $quantidade,
             ':imagem_url' => $imagem_url
+        ]);
+    }
+
+    // NOVO MÉTODO: Buscar produto por ID
+    public function buscarPorId($id) {
+        $stmt = $this->pdo->prepare("SELECT * FROM produtos WHERE id = :id");
+        $stmt->execute([':id' => $id]);
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
+
+    // NOVO MÉTODO: Atualizar quantidade após venda
+    public function atualizarQuantidade($id, $nova_quantidade) {
+        $stmt = $this->pdo->prepare("UPDATE produtos SET quantidade = :quantidade WHERE id = :id");
+        return $stmt->execute([
+            ':id' => $id,
+            ':quantidade' => $nova_quantidade
         ]);
     }
 }
